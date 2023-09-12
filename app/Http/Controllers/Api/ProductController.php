@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -32,7 +34,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart = new Cart;
+        $cart->status = 'abierta';
+        $cart->save();
+
+        $orden = new CartItem;
+        $orden->cart_id = $cart->id;
+        $orden->product_id = $request->product_id;
+        $orden->user_id = $request->user_id;
+        $orden->quantity = $request->quantity;
+        $orden->subtotal = $request->subtotal;
+        $orden->total = $request->subtotal;
+        $orden->save();
+
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'orden de compra creada correctamente'
+        ]);
     }
 
     /**

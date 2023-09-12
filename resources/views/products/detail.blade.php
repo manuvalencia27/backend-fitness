@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <div id="product-detail" data-id="{{ $product->id }}">
+                        <div id="product-detail" data-id="{{ $product->id }}" data-user="{{ Auth::user()->id }}">
                             
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="col-lg-12 col-mg-6"></div>
                         </div>
                         <div class="widget-category mb-30">
-                            <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
+                            <h5 class="section-title style-1 mb-30 wow fadeIn animated">Categoría</h5>
                             <ul class="categories">
                                 @foreach ($categories as $category)
                                     @if (count($category->products)>0)

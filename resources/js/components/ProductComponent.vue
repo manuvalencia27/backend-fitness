@@ -153,6 +153,9 @@ const props = defineProps({
     type: Number,
     required: true,
     default: 0,
+  },
+  user :{
+    type : Number,
   }
 });
 
@@ -213,7 +216,7 @@ const addToCart = () => {
     if (quantity.value < cantidad.value) {
         return;
     }
-    store.agregarProducto(objtProduct.value, cantidad.value);
+    store.agregarProducto(objtProduct.value, cantidad.value, props.user);
 };
 
 </script>

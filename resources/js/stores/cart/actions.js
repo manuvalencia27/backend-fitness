@@ -2,7 +2,7 @@ export default {
     obtenerProductos () {
         this.products = JSON.parse(localStorage.getItem("products")) || [];
     },
-    agregarProducto (product, cantidad){
+    agregarProducto (product, cantidad, idUser){
         
         //Buscar el index en el array
         const indexExist = this.products.findIndex( (el) => parseInt(el.id) === parseInt(product.id));
@@ -12,11 +12,26 @@ export default {
             this.products.push({
                 product: product,
                 qty : cantidad,
+            });
+            
+            axios.post('api/products', {
+                user_id: idUser,
+                product_id: product.id,
+                quantity: cantidad,
+                subtotal: cantidad * product.regular_price,
             })
+            .then(function (response) {
+                console.log('orden de compra abierta');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            
         }else{
             //Si existe actualizamos la cantida de ese item del carrito
             this.products[indexExist].qty += cantidad;
         }
+
 
         localStorage.setItem('products', JSON.stringify(this.products));
     },
@@ -24,11 +39,22 @@ export default {
         // Busco el índice del producto
         const indexExisteProducto = this.products.findIndex( (el) => parseInt(el.product.id) === parseInt(idProducto));
 
-        console.log(indexExisteProducto);
-
         // Si el producto existe, edito la cantidad
         if(indexExisteProducto !== -1) {
             this.products[indexExisteProducto].qty = cantidad;
+
+            axios.patch('/products', {
+                user_id: idUser,
+                product_id: product.id,
+                quantity: cantidad,
+                subtotal: cantidad * product.regular_price,
+            })
+            .then(function (response) {
+                console.log('orden de compra abierte');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
 
         // Guardar products en local storage

@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('key');
+            $table->id();
+            $table->enum('status', ['abierta', 'pagada', 'cancelada']);
+            $table->string('key')->nullable();
             $table->timestamps();
         });
     }
