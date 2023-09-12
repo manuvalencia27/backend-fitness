@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {   
-        $product->load('category', 'tag', 'comments');
+        $product->load('category', 'tag', 'comments.user');
         return new JsonResponse($product);
     }
 
