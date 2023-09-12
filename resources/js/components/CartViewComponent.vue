@@ -46,6 +46,7 @@
                         </table>
                     </div>
                     <div class="cart-action text-end">
+                        <a class="btn  mr-10 mb-sm-15" href="/checkout"><i class="fi-rs-shuffle mr-10"></i>Pagar</a>
                         <a class="btn " href="/products"><i class="fi-rs-shopping-bag mr-10"></i>Continuar comprando</a>
                     </div>
                     <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>

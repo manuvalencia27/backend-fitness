@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <div id="product-detail" data-id="{{ $product->id }}" data-user="{{ Auth::user()->id }}">
+                        <div id="product-detail" data-id="{{ $product->id }}" data-user="{{ Auth::check() ? Auth::user()->id : 0 }}">
                             
                         </div>
                     </div>

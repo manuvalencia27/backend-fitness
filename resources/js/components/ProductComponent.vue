@@ -34,7 +34,7 @@
                         <p> {{ s_desc  }} </p>
                     </div>
                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                    <div class="detail-extralink">
+                    <div class="detail-extralink" v-if="user > 0">
                         <div class="form-group">
                             <input type="number" name="quantity" id="quantity" v-model="cantidad" class="form-control">                                               
                         </div>

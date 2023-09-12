@@ -14,11 +14,6 @@
     <section class="mt-50 mb-50">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="divider mt-50 mb-50"></div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="mb-25">
                         <h4>Billing Details</h4>
