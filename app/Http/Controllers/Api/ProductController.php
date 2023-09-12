@@ -75,7 +75,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $orden = CartItem::where('product_id', $request->product_id)->where('user_id', $request->user_id)->first();
+        $orden->cart_id = $orden->cart_id;
+        $orden->product_id = $request->product_id;
+        $orden->user_id = $request->user_id;
+        $orden->quantity = (int)$request->quantity;
+        $orden->subtotal = $request->subtotal;
+        $orden->total = $request->subtotal;
+        $orden->save();
+
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'orden de compra editada correctamente'
+        ]);
     }
 
     /**

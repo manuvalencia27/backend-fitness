@@ -5,7 +5,11 @@ import { createPinia } from 'pinia';
 
 const pinia = createPinia();
 
-const app = createApp(CartViewComponent);
+const el = document.getElementById("view-cart");
+
+const app = createApp(CartViewComponent, {
+    user: JSON.parse(el.getAttribute('data-user'))
+});
 
 app.use(pinia);
 

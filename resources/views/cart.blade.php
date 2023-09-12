@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div id="view-cart">
+    <div id="view-cart" data-user="{{ Auth::user()->id }}">
 
     </div>
 </main>

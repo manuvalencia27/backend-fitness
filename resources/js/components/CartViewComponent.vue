@@ -26,7 +26,7 @@
                                     <td class="price" data-title="Price"><span>${{ product.product.regular_price }} </span></td>
                                     <td class="text-center" data-title="Stock">
                                         <div class="detail-qty m-auto">
-                                            <input type="number" @change="store.editarCantidad(product.product.id, $event.target.value)" :value="product.qty" class="form-control" style="width: 80px;">
+                                            <input type="number" @change="store.editarCantidad(product.product.id, $event.target.value, props.user)" :value="product.qty" class="form-control" style="width: 80px;">
                                         </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
@@ -80,6 +80,13 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useCartStore } from '../stores/cart/index';
+
+//porpiedades vue
+const props = defineProps({
+  user :{
+    type : Number,
+  }
+});
 
 //store
 const store = useCartStore();

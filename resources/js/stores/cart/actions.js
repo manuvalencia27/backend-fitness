@@ -30,12 +30,25 @@ export default {
         }else{
             //Si existe actualizamos la cantida de ese item del carrito
             this.products[indexExist].qty += cantidad;
+
+            axios.patch('api/products', {
+                user_id: idUser,
+                product_id: product.id,
+                quantity: cantidad,
+                subtotal: cantidad * product.regular_price,
+            })
+            .then(function (response) {
+                console.log('orden de compra editada');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
 
 
         localStorage.setItem('products', JSON.stringify(this.products));
     },
-    editarCantidad(idProducto, cantidad) {
+    editarCantidad(idProducto, cantidad, idUser) {
         // Busco el índice del producto
         const indexExisteProducto = this.products.findIndex( (el) => parseInt(el.product.id) === parseInt(idProducto));
 
@@ -43,14 +56,14 @@ export default {
         if(indexExisteProducto !== -1) {
             this.products[indexExisteProducto].qty = cantidad;
 
-            axios.patch('/products', {
+            axios.patch('api/products/'+idProducto, {
                 user_id: idUser,
-                product_id: product.id,
+                product_id: idProducto,
                 quantity: cantidad,
-                subtotal: cantidad * product.regular_price,
+                subtotal: cantidad * this.products[indexExisteProducto].product.regular_price,
             })
             .then(function (response) {
-                console.log('orden de compra abierte');
+                console.log('orden de compra editada');
             })
             .catch(function (error) {
                 console.log(error);
