@@ -41,6 +41,8 @@ Route::prefix('categories')->group(function() {
 Route::get('cart', [\App\Http\Controllers\CartController::class, 'index']);
 Route::get('checkout', [\App\Http\Controllers\CartController::class, 'checkout']);
 
+Route::post('cart', [\App\Http\Controllers\CartController::class, 'store']);
+
 /* Rutas para el crud Admin*/
 Route::prefix('admin')->group(function () {
 

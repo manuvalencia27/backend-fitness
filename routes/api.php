@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Productos
 Route::apiResource('products', \App\Http\Controllers\API\ProductController::class);
+
+//Facturacion
+Route::post('cart', [\App\Http\Controllers\API\ProductController::class, 'finalizar']);

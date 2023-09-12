@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Invoice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -96,5 +97,25 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function finalizar(Request $request)
+    {
+
+        $orden = Cart::find(1);
+        $orden->status = 'pagada';
+
+        $invoice = new Invoice;
+        $invoice->user_id = $request->user->id;
+        $invoice->cc = $request->cc;
+        $invoice->tc = $request->tc;
+        $invoice->cvc = $request->cvc;
+        $invoice->fecha_vencimiento = $request->fecha_vencimiento;
+        $invoice->save();
+
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'La factura fue registrada con exito'
+        ]);
     }
 }
